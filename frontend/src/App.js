@@ -18,7 +18,7 @@ function App() {
           path="/main"
           element={isAuthenticated ? <MainPage /> : <Navigate to="/login" replace />}
         />
-        <Route path="/login" element={isAuthenticated ? <MainPage/> : <LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={isAuthenticated ? <MainPage/> : <RegisterPage />} />
       </Routes>
     </div>

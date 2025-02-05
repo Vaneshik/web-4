@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> {
                     var cc = new org.springframework.web.cors.CorsConfiguration();
-                    cc.setAllowedOrigins(List.of("http://localhost:3000", "http://0.0.0.0", "http://vnshk.ru", "http://localhost", ""));
+                    cc.setAllowedOrigins(List.of("http://localhost:3000", "http://0.0.0.0", "http://vnshk.ru", "http://localhost"));
                     cc.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
                     cc.setAllowedHeaders(List.of("*"));
                     cc.setAllowCredentials(true);

@@ -9,7 +9,7 @@ export const fetchPoints = createAsyncThunk(
             // Достаём token из auth-стейта
             const token = getState().auth.token;
 
-            const response = await axios.get('http://localhost:7777/api/points', {
+            const response = await axios.get('/api/points', {
                 headers: {
                     Authorization: token ? `Bearer ${token}` : '',
                 },
@@ -32,7 +32,7 @@ export const createPoint = createAsyncThunk(
             const token = getState().auth.token;
 
             const requestBody = { x, y, r };
-            const response = await axios.post('http://localhost:7777/api/points', requestBody, {
+            const response = await axios.post('/api/points', requestBody, {
                 headers: {
                     Authorization: token ? `Bearer ${token}` : '',
                 },

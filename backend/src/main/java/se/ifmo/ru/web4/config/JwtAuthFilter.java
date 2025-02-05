@@ -34,27 +34,22 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String token = authHeader.substring(7); // убираем "Bearer "
+            String token = authHeader.substring(7);
 
             try {
                 Claims claims = jwtService.parseToken(token);
-                String username = claims.getSubject();  // username
+                String username = claims.getSubject();
                 String role = (String) claims.get("role");
 
-                // Можно загрузить из базы userDetails, если нужно:
-                // UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-
-                // Аутентификация
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(
-                                username, // principal (можно userDetails)
-                                null,     // credentials
-                                Collections.emptyList() // или new SimpleGrantedAuthority(role)
+                                username,
+                                null,
+                                Collections.emptyList()
                         );
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             } catch (Exception e) {
-                // Токен невалиден / просрочен
                 SecurityContextHolder.clearContext();
             }
         }

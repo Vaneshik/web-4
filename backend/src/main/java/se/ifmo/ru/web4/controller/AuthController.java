@@ -45,7 +45,6 @@ public class AuthController {
         public String password;
     }
 
-    // Для удобства будем возвращать JSON с user и token
     public static class LoginResponse {
         public String token;
         public String username;
@@ -88,8 +87,6 @@ public class AuthController {
 
         try {
             Authentication auth = authenticationManager.authenticate(authToken);
-            // Если успех - формируем JWT
-            // (auth.getPrincipal() - это org.springframework.security.core.userdetails.User)
             org.springframework.security.core.userdetails.User userDetails =
                     (org.springframework.security.core.userdetails.User) auth.getPrincipal();
 
